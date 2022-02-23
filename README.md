@@ -4,3 +4,5 @@ jekyll new . --forc
 bundle exec jekyll serve
 
 Using github-pages 
+
+update the config.yml's baseurl and url 
