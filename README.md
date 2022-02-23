@@ -3,4 +3,4 @@
 jekyll new . --forc
 bundle exec jekyll serve
 
-change config.yml's url 
+Using github-pages 
