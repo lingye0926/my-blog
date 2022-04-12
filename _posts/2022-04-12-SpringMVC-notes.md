@@ -62,10 +62,10 @@ public class TestController {
 }
 ```
 ### springMVC支持Ant方式的请求路径
-   在Ant中，有3种匹配符
-    *：任意字符
-    ？：任意一个字符
-    **：任意多层目录
+   在Ant中，有3种匹配符<br>
+    *：任意字符<br>
+    ？：任意一个字符<br>
+    **：任意多层目录<br>
 
 ### springMVC URL请求参数占位符
 通过注解@PathVariable来获取占位符的值
