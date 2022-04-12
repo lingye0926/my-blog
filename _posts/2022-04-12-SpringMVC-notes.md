@@ -81,3 +81,26 @@ public class TestController {
         return "success";
     }
 ```
+### REST
+1. /user/1001 GET
+2. /user POST
+3. /user PUT
+4. /user/1001 DELETE
+<br>
+HiddenHttpMethodFilter 会根据几个条件对POST请求作出转换:
+条件：
+1. POST
+2.参数_methid
+若不符合条件，--> POST
+若符合条件：经过转换之后，真正的请求方式，其实就是_method 的值
+
+```xml
+    <filter>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+```
