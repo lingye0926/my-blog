@@ -6,3 +6,5 @@ bundle exec jekyll serve
 Using github-pages bundle update in Gemfile
 
 update the config.yml's baseurl and url 
+
+ctrl+shift+p ->commit->commit message->push
