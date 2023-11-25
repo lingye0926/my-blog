@@ -1,10 +1,11 @@
-# this is the repo for my blog
+# Welcome to my blog 
 
-jekyll new . --force
-bundle exec jekyll serve
+My name is Ellin,  
+I come from a rural contryside of china .  
+Now i live in Japan. 
+I aspire to go to a broader and freer world.
 
-Using github-pages bundle update in Gemfile
-
-update the config.yml's baseurl and url 
-
-ctrl+shift+p ->commit->commit message->push
+私の名前はえーりんです、　　
+中国出身。　
+今日本に住んでいる。　　
+私はより広がり自由な世界に行きたいです。
