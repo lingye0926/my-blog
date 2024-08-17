@@ -164,5 +164,87 @@ root.render(
 // 5.通过store实例的getState方法获取最新状态更新到视图中
 ```
 
+## 异步操作
+store/modules/channelStore.js
 
+```javascript
+import { createSlice} from "@reduxjs/toolkit";
+import axios from "axios";
+
+const channelStore = createSlice({
+    name:'channel',
+    initialState:{
+        channelList:[]
+    },
+    reducers:{
+        setChannels(state,action){
+            state.channelList = action.payload
+        }
+    }
+})
+
+//异步请求部分
+const {setChannels} = channelStore.actions
+
+const fetchChannelList = () => {
+    return async(dispatch) => {
+        const res = await axios.get('http://geek.itheima.net/v1_0/channels')
+        dispatch(setChannels(res.data.data.channels))
+    }
+}
+
+export {fetchChannelList}
+
+const channelReducer = channelStore.reducer
+
+export default channelReducer;
+```
+store/index.js
+
+```javascript
+import { configureStore } from "@reduxjs/toolkit";
+//导入子模块reducer
+import counterReducer from './modules/counterStore'
+
+import channelReducer from './modules/channelStore'
+const store = configureStore({
+    reducer:{
+        counter:counterReducer,
+        channel: channelReducer
+    }
+})
+
+export default store;
+```
+App.js
+
+```javascript
+import { useSelector,useDispatch } from "react-redux";
+import {increment,decrement,addToNum} from './store/modules/counterStore'
+import { fetchChannelList } from "./store/modules/channelStore";
+import { useEffect } from "react";
+function App(){
+    const {count} = useSelector(state => state.counter)
+    const {channelList} = useSelector(state => state.channel)
+    const dispatch = useDispatch()
+    //使用useEffect触发异步请求执行
+    useEffect(()=> {
+        dispatch(fetchChannelList())
+    },[dispatch])
+    return (
+        <div className="App">
+            <button onClick={()=> dispatch(decrement())}>-</button>
+                {count}
+            <button onClick={()=> dispatch(increment())}>+</button>
+            <button onClick={()=> dispatch(addToNum(10))}>add to 10</button>
+            <button onClick={()=> dispatch(addToNum(20))}>add to 20</button>
+            <ul>
+                {channelList.map(item => <li key={item.id}>{item.name}</li>)}
+            </ul>
+        </div>
+    )
+}
+
+export default App;
+```
  
